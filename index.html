@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PWNEDCAKE | SYSTEM BREACH</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Courier New', monospace;
+      cursor: none;
+    }
+    
+    body {
+      background-color: #0a0a0a;
+      color: #00ff00;
+      overflow: hidden;
+      height: 100vh;
+      font-family: 'Courier New', monospace;
+      position: relative;
+    }
+    
+    #hex-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      opacity: 0.05;
+    }
+    
+    #glitch-container {
+      position: relative;
+      z-index: 5;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    
+    .warning-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: #ff0000;
+      color: #000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px 20px;
+      font-weight: bold;
+      z-index: 10;
+      animation: warning-flash 1s infinite;
+      font-size: 0.9rem;
+    }
+    
+    @keyframes warning-flash {
+      0%, 49% { background-color: #ff0000; }
+      50%, 100% { background-color: #ff6600; }
+    }
+    
+    #logo {
+      font-size: 4rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 5px;
+      position: relative;
+      text-shadow: 0 0 10px #0f0;
+      animation: text-flicker 5s infinite;
+    }
+    
+    .glitch {
+      position: relative;
+    }
+    
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    
+    .glitch::before {
+      color: #ff00ff;
+      z-index: -1;
+      animation: glitch-effect 3s infinite;
+    }
+    
+    .glitch::after {
+      color: #00ffff;
+      z-index: -2;
+      animation: glitch-effect 2s infinite reverse;
+    }
+    
+    @keyframes glitch-effect {
+      0% {
+        transform: translate(-3px, 2px);
+      }
+      25% {
+        transform: translate(3px, -2px);
+      }
+      50% {
+        transform: translate(-5px, 4px);
+      }
+      75% {
+        transform: translate(2px, -4px);
+      }
+      100% {
+        transform: translate(-3px, 2px);
+      }
+    }
+    
+    @keyframes text-flicker {
+      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        text-shadow: -2px -2px 10px #0f0, 2px 2px 10px #0f0;
+      }
+      20%, 24%, 55% {
+        text-shadow: none;
+      }
+    }
+    
+    #console {
+      width: 80%;
+      max-width: 800px;
+      height: 300px;
+      background-color: rgba(0, 0, 0, 0.8);
+      border: 2px solid #0f0;
+      border-radius: 5px;
+      position: relative;
+      overflow: hidden;
+      margin: 30px 0;
+      box-shadow: 0 0 30px rgba(0, 255, 0, 0.5);
+    }
+    
+    #console-header {
+      background: linear-gradient(90deg, #0f0, #0a0);
+      height: 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 10px;
+      color: #000;
+      font-weight: bold;
+    }
+    
+    #console-body {
+      padding: 10px;
+      height: calc(100% - 25px);
+      overflow: hidden;
+      font-size: 1rem;
+    }
+    
+    #console-text {
+      white-space: pre-wrap;
+      line-height: 1.5;
+    }
+    
+    .cursor {
+      display: inline-block;
+      width: 10px;
+      height: 18px;
+      background-color: #0f0;
+      animation: blink 1s step-end infinite;
+      margin-left: 2px;
+      vertical-align: middle;
+    }
+    
+    @keyframes blink {
+      from, to { opacity: 1; }
+      50% { opacity: 0; }
+    }
+    
+    .counter-container {
+      margin: 20px 0;
+      text-align: center;
+    }
+    
+    .counter-label {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      color: #0f0;
+    }
+    
+    .countdown-display {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+    
+    .countdown-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .counter {
+      display: inline-flex;
+      margin: 0 5px;
+      background-color: rgba(0, 0, 0, 0.8);
+      border: 1px solid #0f0;
+      padding: 5px;
+      font-family: 'Courier New', monospace;
+      color: #0f0;
+      position: relative;
+      width: 60px;
+      height: 50px;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5rem;
+      overflow: hidden;
+    }
+    
+    .counter-text {
+      font-size: 0.8rem;
+      margin-top: 5px;
+      color: #0f0;
+      text-transform: uppercase;
+    }
+    
+    .counter::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #0f0, transparent);
+      animation: scan-line 2s linear infinite;
+    }
+    
+    @keyframes scan-line {
+      0% {
+        top: 0;
+      }
+      100% {
+        top: 100%;
+      }
+    }
+    
+    .social {
+      display: flex;
+      gap: 20px;
+      margin-top: 20px;
+    }
+    
+    .social-icon {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid #0f0;
+      border-radius: 5px;
+      color: #0f0;
+      text-decoration: none;
+      font-size: 1.2rem;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .social-icon:hover {
+      background-color: #0f0;
+      color: #000;
+      transform: translateY(-5px);
+      box-shadow: 0 0 20px #0f0;
+    }
+    
+    .social-icon::before {
+      content: '';
+      position: absolute;
+      top: -100%;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(transparent, rgba(0, 255, 0, 0.3), transparent);
+      animation: social-scan 3s linear infinite;
+    }
+    
+    @keyframes social-scan {
+      0% {
+        top: -100%;
+      }
+      100% {
+        top: 200%;
+      }
+    }
+    
+    #custom-cursor {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      border: 1px solid #0f0;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: 9999;
+      mix-blend-mode: difference;
+      transition: transform 0.1s ease;
+    }
+    
+    #custom-cursor::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 5px;
+      height: 5px;
+      background-color: #0f0;
+      border-radius: 50%;
+    }
+    
+    .scanline {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: rgba(0, 255, 0, 0.3);
+      opacity: 0.75;
+      box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+      z-index: 4;
+      pointer-events: none;
+      animation: scanline-move 3s linear infinite;
+    }
+    
+    @keyframes scanline-move {
+      0% {
+        top: -5%;
+      }
+      100% {
+        top: 105%;
+      }
+    }
+    
+    .noise-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      opacity: 0.08;
+      z-index: 2;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n' x='0' y='0'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' fill='%23000' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    }
+
+    .date-form {
+      margin-top: 20px;
+      background-color: rgba(0, 0, 0, 0.8);
+      border: 1px solid #0f0;
+      padding: 15px;
+      border-radius: 5px;
+      display: none;
+    }
+
+    .date-form input {
+      background-color: rgba(0, 0, 0, 0.8);
+      border: 1px solid #0f0;
+      color: #0f0;
+      padding: 8px;
+      margin-right: 10px;
+      font-family: 'Courier New', monospace;
+    }
+
+    .date-form button {
+      background-color: #0f0;
+      color: #000;
+      border: none;
+      padding: 8px 15px;
+      cursor: pointer;
+      font-family: 'Courier New', monospace;
+      font-weight: bold;
+    }
+
+    .config-button {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      background-color: rgba(0, 0, 0, 0.8);
+      border: 1px solid #0f0;
+      color: #0f0;
+      padding: 8px 15px;
+      cursor: pointer;
+      font-family: 'Courier New', monospace;
+      z-index: 15;
+    }
+    
+    @media (max-width: 768px) {
+      #logo {
+        font-size: 2.5rem;
+      }
+      
+      #console {
+        width: 95%;
+        height: 250px;
+      }
+
+      .countdown-display {
+        flex-wrap: wrap;
+      }
+
+      .counter {
+        width: 50px;
+        height: 40px;
+        font-size: 1.2rem;
+      }
+
+      .counter-text {
+        font-size: 0.7rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="custom-cursor"></div>
+  <div class="warning-bar">
+    <span>/ WARNING: SYSTEM ACCESS RESTRICTED /</span>
+    <span id="connection-status">SECURE CONNECTION_</span>
+  </div>
+  <div class="scanline"></div>
+  <div class="noise-overlay"></div>
+  <canvas id="hex-bg"></canvas>
+  
+  <div id="glitch-container">
+    <h1 id="logo" class="glitch" data-text="PWNEDCAKE">PWNEDCAKE</h1>
+    
+    <div id="console">
+      <div id="console-header">
+        <div>terminal@pwnedcake:~</div>
+        <div>kernel v3.1.4</div>
+      </div>
+      <div id="console-body">
+        <div id="console-text"></div>
+        <span class="cursor"></span>
+      </div>
+    </div>
+    
+    <div class="counter-container">
+      <div class="counter-label">SYSTEM DEPLOYMENT IN:</div>
+      <div class="countdown-display">
+        <div class="countdown-item">
+          <div class="counter" id="days">00</div>
+          <div class="counter-text">Days</div>
+        </div>
+        <div class="countdown-item">
+          <div class="counter" id="hours">00</div>
+          <div class="counter-text">Hours</div>
+        </div>
+        <div class="countdown-item">
+          <div class="counter" id="minutes">00</div>
+          <div class="counter-text">Minutes</div>
+        </div>
+        <div class="countdown-item">
+          <div class="counter" id="seconds">00</div>
+          <div class="counter-text">Seconds</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="social">
+      <a href="#" class="social-icon" title="GitHub">G</a>
+      <a href="#" class="social-icon" title="Twitter">T</a>
+      <a href="#" class="social-icon" title="Discord">D</a>
+      <a href="#" class="social-icon" title="Email">@</a>
+    </div>
+
+    <div class="date-form" id="dateForm">
+      <input type="datetime-local" id="launchDate">
+      <button id="setDateBtn">SET COUNTDOWN</button>
+    </div>
+  </div>
+
+  <button class="config-button" id="configBtn">CONFIG</button>
+
+  <script>
+    // Custom cursor
+    const cursor = document.getElementById('custom-cursor');
+    document.addEventListener('mousemove', (e) => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+    });
+    
+    // Console typing effect
+    const consoleText = `> Initializing system...\n> Kernel loaded.\n> Accessing mainframe...\n> Access granted.\n> Detecting intruders...\n> System currently in maintenance mode.\n> Deploying security protocols...\n> Warning: Website under construction.\n> Deploying new frontend in T-minus [see countdown].\n> Stay tuned for the ultimate hack...\n> root@pwnedcake:~$ _`;
+    
+    const terminalElement = document.getElementById('console-text');
+    let textPosition = 0;
+    
+    function typeText() {
+      if (textPosition < consoleText.length) {
+        terminalElement.innerHTML += consoleText.charAt(textPosition);
+        textPosition++;
+        
+        // Scroll to bottom
+        const consoleBody = document.getElementById('console-body');
+        consoleBody.scrollTop = consoleBody.scrollHeight;
+        
+        // Random typing speed
+        const speed = Math.random() * 50 + 30;
+        setTimeout(typeText, speed);
+      }
+    }
+    
+    // Start typing animation
+    typeText();
+    
+    // Get date from localStorage or set default (June 1, 2025)
+    let countdownDate;
+    
+    if (localStorage.getItem('pwnedcakeLaunchDate')) {
+      countdownDate = new Date(localStorage.getItem('pwnedcakeLaunchDate'));
+    } else {
+      countdownDate = new Date("2025-06-01T00:00:00");
+      localStorage.setItem('pwnedcakeLaunchDate', countdownDate);
+    }
+    
+    // Set initial value for the date input
+    const dateInput = document.getElementById('launchDate');
+    dateInput.value = formatDateForInput(countdownDate);
+    
+    function formatDateForInput(date) {
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+      const hours = String(date.getHours()).padStart(2, '0');
+      const minutes = String(date.getMinutes()).padStart(2, '0');
+      
+      return `${year}-${month}-${day}T${hours}:${minutes}`;
+    }
+    
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = countdownDate - now;
+      
+      // If countdown is done
+      if (distance < 0) {
+        document.getElementById('days').innerHTML = "00";
+        document.getElementById('hours').innerHTML = "00";
+        document.getElementById('minutes').innerHTML = "00";
+        document.getElementById('seconds').innerHTML = "00";
+        return;
+      }
+      
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      
+      document.getElementById('days').innerHTML = days < 10 ? "0" + days : days;
+      document.getElementById('hours').innerHTML = hours < 10 ? "0" + hours : hours;
+      document.getElementById('minutes').innerHTML = minutes < 10 ? "0" + minutes : minutes;
+      document.getElementById('seconds').innerHTML = seconds < 10 ? "0" + seconds : seconds;
+    }
+    
+    // Update countdown every second
+    setInterval(updateCountdown, 1000);
+    updateCountdown(); // Initial countdown update
+    
+    // Config button to show/hide date form
+    const configBtn = document.getElementById('configBtn');
+    const dateForm = document.getElementById('dateForm');
+    
+    configBtn.addEventListener('click', () => {
+      if (dateForm.style.display === "block") {
+        dateForm.style.display = "none";
+      } else {
+        dateForm.style.display = "block";
+      }
+    });
+    
+    // Set new countdown date
+    const setDateBtn = document.getElementById('setDateBtn');
+    
+    setDateBtn.addEventListener('click', () => {
+      const newDate = new Date(dateInput.value);
+      
+      if (!isNaN(newDate.getTime())) {
+        countdownDate = newDate;
+        localStorage.setItem('pwnedcakeLaunchDate', newDate);
+        updateCountdown();
+        dateForm.style.display = "none";
+      }
+    });
+    
+    // Hex background
+    const canvas = document.getElementById('hex-bg');
+    const ctx = canvas.getContext('2d');
+    
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    
+    function drawHexBackground() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      const hexChars = '0123456789ABCDEF';
+      const fontSize = 12;
+      const columns = Math.floor(canvas.width / fontSize);
+      const rows = Math.floor(canvas.height / fontSize);
+      
+      ctx.font = `${fontSize}px monospace`;
+      ctx.fillStyle = '#0f0';
+      
+      for (let i = 0; i < columns; i++) {
+        for (let j = 0; j < rows; j++) {
+          if (Math.random() > 0.95) {
+            const char = hexChars[Math.floor(Math.random() * hexChars.length)];
+            ctx.fillText(char, i * fontSize, j * fontSize);
+          }
+        }
+      }
+    }
+    
+    // Draw initial hex background
+    drawHexBackground();
+    
+    // Update the hex background periodically
+    setInterval(drawHexBackground, 1000);
+    
+    // Connection status flicker
+    const connectionStatus = document.getElementById('connection-status');
+    
+    setInterval(() => {
+      if (Math.random() > 0.7) {
+        connectionStatus.innerHTML = 'CONNECTION LOST_';
+        setTimeout(() => {
+          connectionStatus.innerHTML = 'SECURE CONNECTION_';
+        }, 300);
+      }
+    }, 3000);
+    
+    // Handle window resize
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      drawHexBackground();
+    });
+  </script>
+</body>
+</html>
