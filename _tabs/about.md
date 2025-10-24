@@ -54,7 +54,7 @@ When I'm not researching the latest attack vectors or developing proof-of-concep
 - Spearheaded a major CTF event, designing challenging tasks across web exploitation, reverse engineering, cryptography, and various other security domains
 
 ### CTF Player
-**HackTheBox / TryHackMe** | *Oct 2024 – Present*
+**HackTheBox / TryHackMe / Other** | *Oct 2021 – Present*
 
 - **Ranked among Top 3 Players in Sri Lanka** - Maintained a leading position on the HackTheBox leaderboard
 - **Diverse Expertise Across Categories** - Proficient in Active Directory exploitation, web vulnerabilities, reverse engineering, binary exploitation, cloud security, and more
