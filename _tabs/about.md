@@ -29,9 +29,9 @@ When I'm not researching the latest attack vectors or developing proof-of-concep
 ## Certifications
 
 - **CPTS** - Certified Penetration Testing Specialist
+- **eJPT** - eLearnSecurity Junior Penetration Tester
+- **PT1** - Junior Penetration Tester
 - **CRTA** - Certified Red Team Analyst
-- **EJPT** - eLearnSecurity Junior Penetration Tester
-- **PT1** - Penetration Testing Level 1
 - **IIT Cybersecurity**
 - **IIT Network System Administrator**
 - **HackTheBox Dante Pro Lab Certificate**
