@@ -4,11 +4,6 @@ icon: fas fa-info-circle
 order: 4
 ---
 
-# the default layout is 'page'
-icon: fas fa-info-circle
-order: 4
----
-
 ## Introduction
 
 Hey there! I'm **Wathsala Dewmina**, a cyber security enthusiast with a deep passion for breaking things to make them stronger. My focus lies in enterprise-level internal security, particularly Active Directory ecosystems where the real battles are fought. I spend my days hunting for privilege escalation paths, identifying misconfigurations, and mapping lateral-movement opportunities within complex network infrastructures.
