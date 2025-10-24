@@ -84,6 +84,8 @@ print(globals())
 This revealed several interesting objects, including a reference to a **database.db** file and various Flask application objects.
 
 ![Global Variables Output](/assets/img/htb-code/globals-output.png)
+![Global Variables Output](/assets/img/htb-code/global-output-database.png)
+
 _Interesting findings in global variables_
 
 #### Local Variables Enumeration
