@@ -72,7 +72,7 @@ Host script results:
 |_  start_date: N/A
 ```
 
-Looks like the AD installed on this machine is most likely in default settings because its not showing all the SSL SMB information we normally see on other AD machines.
+Looks like the AD installed on this machine is most likely in default settings because it's not showing all the SSL SMB information we normally see on other AD machines.
 
 Using NetExec we confirm the `Domain` and the `Host`:
 
@@ -107,7 +107,7 @@ SMB         10.10.11.75     445    dc               [-] rustykey.htb\rr.parker:8
 
 - **NTLM authentication is not allowed** on the DC (your earlier scan showed `NTLM:False`). If your client tried to fall back to NTLM, the DC will reject it.
 
-Since NTLM is disabled and we use kerberos authentication to continue.
+Since NTLM is disabled, we'll use kerberos authentication to continue.
 
 Before that we have to get the .krb5 file. We can use the netexec built in feature to do that:
 
@@ -188,7 +188,7 @@ backupadmin
 
 Now Let's Walk The Dog (bloodhound).
 
-I'll be using rusthound because its much faster and less buggy than the nxc builtin version and the bloodhound-python.
+I'll be using rusthound because it's much faster and less buggy than the nxc builtin version and the bloodhound-python.
 
 **RustHound:** [https://github.com/NH-RED-TEAM/RustHound/](https://github.com/NH-RED-TEAM/RustHound/)
 
@@ -233,19 +233,19 @@ We can now upload this collection to the bloodhound and get a greater view of ho
 
 ### Analyzing the data from the bloodhound
 
-There were not any kind of DACL abusing from the surface, `rr.parker` user doesn't have any kind of outbound connection to other users/groups.
+There wasn't any kind of DACL abuse from the surface; the `rr.parker` user doesn't have any kind of outbound connection to other users/groups.
 
 ![rr.parker BloodHound Info](/assets/img/htb-rustykey/rr-parker-info.png)
 _rr.parker user information in BloodHound showing no significant privileges_
 
-But after cruising for a while in the bloodhound and found something very interesting.
+But after cruising for a while in BloodHound, I found something very interesting.
 
 There is a Organization Unit (OU) that has 5 computers in there:
 
 ![Computers in OU](/assets/img/htb-rustykey/computers-ou.png)
 _Five computers discovered in the IT Organizational Unit_
 
-Since its very inconvenient for us to search each of the computer one by one I added a Cypher query to display all the outbound connections of those each computers:
+Since it's very inconvenient for us to search each computer one by one, I added a Cypher query to display all the outbound connections from each computer:
 
 ```cypher
 MATCH (ou:OU {name: "COMPUTERS@RUSTYKEY.HTB"})
@@ -259,7 +259,7 @@ _Custom Cypher query showing outbound relationships from computers in the OU_
 
 And from that output I saw something very interesting which is that the **IT_COMPUTER3** has **AddSelf** permissions to the **HELPDESK** Group.
 
-If we can get hands on this IT-COMPUTER3 machine we can impersonate that and add ourselves into the HELPDESK and if we can get HELPDESK There is a clear picture of the attack we have access to so many accounts:
+If we can get hands on this IT-COMPUTER3 machine, we can impersonate it and add ourselves into the HELPDESK. If we can get HELPDESK, there is a clear attack path - we'll have access to so many accounts:
 
 ![HELPDESK Outbound Connections](/assets/img/htb-rustykey/helpdesk-outbound.png)
 _HELPDESK group showing powerful privileges over multiple users_
@@ -282,7 +282,7 @@ This is where we use **Timeroasting**.
 
 ### Timeroasting
 
-Before that if we see the IT-COMPUTER3 object information we can see that the user who's in charge of that account has changed the password after the account was created so it is possible that the password of that computer is very weak:
+Before that, if we see the IT-COMPUTER3 object information, we can see that the user who's in charge of that account has changed the password after the account was created, so it's possible that the password of that computer is very weak:
 
 ![IT-COMPUTER3 Object Info](/assets/img/htb-rustykey/it-computer3-info.png)
 _IT-COMPUTER3 properties showing password was manually changed after creation_
@@ -418,7 +418,7 @@ Candidates.#01...: Ryanpenis -> RonaldoNathan
 Hardware.Mon.#01.: Temp: 71c Util: 97%
 ```
 
-Nice we get the password as **`Rusty88!`**. Now we can perform that attack we saw in the bloodhound :)
+Nice! We got the password as **`Rusty88!`**. Now we can perform that attack we saw in BloodHound :)
 
 1. First we have **AddSelf** permissions to the HelpDesk Group:
 
@@ -435,7 +435,7 @@ bloodyAD --host dc.rustykey.htb -k -d rustykey.htb -u 'IT-COMPUTER3$' -p 'Rusty8
 ![BloodyAD Add to HELPDESK](/assets/img/htb-rustykey/bloody-add-helpdesk.png)
 _Successfully added IT-COMPUTER3$ to the HELPDESK group using bloodyAD_
 
-Now since we have control to the HELPDESK we can start abusing other DACLs.
+Now since we have control of the HELPDESK, we can start abusing other DACLs.
 
 2. Second up we have **ForceChangePassword**:
 
@@ -497,7 +497,7 @@ If you look at the IT group carefully in the bloodhound you can see that the IT 
 ![IT Group Protected Users](/assets/img/htb-rustykey/it-protected-users.png)
 _IT group is linked to Protected Users through Protected Objects_
 
-Since we have full control over the IT and HelpDesk we can remove that **Protected Objects** object from the **IT** object/group.
+Since we have full control over the IT and HelpDesk groups, we can remove that **Protected Objects** object from the **IT** group.
 
 We can utilize bloodyAD to do that:
 
@@ -506,12 +506,12 @@ bloodyAD --host dc.rustykey.htb -k -d rustykey.htb -u 'IT-COMPUTER3$' -p 'Rusty8
 [-] IT removed from Protected Objects
 ```
 
-Nice now we can try and see if we can get access using the kerberos authentication:
+Nice! Now we can try and see if we can get access using Kerberos authentication:
 
 ![NetExec BB Morgan Success](/assets/img/htb-rustykey/nxc-bb-morgan-success.png)
 _Successfully authenticated as bb.morgan after removing Protected Objects_
 
-It worked now we can get a login to bb.morgan since he is a user of **Remote Management Users**.
+It worked! Now we can get a login to bb.morgan since he is a member of **Remote Management Users**.
 
 Now we can get a login using a ticket:
 
@@ -530,7 +530,7 @@ Now this is user flag.
 
 ## Root
 
-Now is the hard part (required lot of thinking to do this machine).
+Now is the hard part (this required a lot of thinking to complete).
 
 ```powershell
 *Evil-WinRM* PS C:\Users\bb.morgan\Desktop> ls
@@ -545,16 +545,16 @@ Mode                LastWriteTime         Length Name
 *Evil-WinRM* PS C:\Users\bb.morgan\Desktop>
 ```
 
-We can see there is a pdf file called internal.pdf we can download that pdf using the evil-winrm built in `download` command.
+We can see there's a PDF file called internal.pdf - we can download it using the evil-winrm built-in `download` command.
 
 ![Internal PDF Content](/assets/img/htb-rustykey/internal-pdf.png)
 _Internal memo about Support group extended access for archiving utilities_
 
-According to this memo the Support group now has extended access:
+According to this memo, the Support group now has extended access:
 
 > "As part of the new Support utilities rollout, extended access has been temporarily granted to allow testing and troubleshooting of file archiving features across shared workstations"
 
-This clicks us something because earlier we had a user called **EE.REED** which is a member of the **Support** group, we can use that user to go forward.
+This hints at something interesting - earlier we had a user called **EE.REED** who is a member of the **Support** group. We can use that user to move forward.
 
 And in that note:
 
@@ -568,9 +568,9 @@ We can see it says 'let devops know if you encounter access errors or missing sh
 
 > "Some newer systems handle context menu actions differently, so registry-level adjustments are expected during this phase."
 
-From the above information we can see that it triggers shell actions automatically on certain points and the above line says that registry level adjustments are expected during this phase.
+From the above information, we can see that it triggers shell actions automatically at certain points, and the above line indicates that registry-level adjustments are expected during this phase.
 
-This says that "Registry-level adjustments" are related to an archiving utility because it mentioned the fact compression/extraction and archiving tools.
+This suggests that "Registry-level adjustments" are related to an archiving utility, as it mentions compression/extraction and archiving tools.
 
 Let the enumeration begin:
 
@@ -658,7 +658,7 @@ HKEY_CLASSES_ROOT\CLSID\{23170F69-40C1-278A-1000-000100020000}\InprocServer32
 
 The memo mentions the **Support group has extended access** for troubleshooting archiving features and registry-level adjustments.
 
-Now we can get access to the user **EE.REED** to do this attack. We can simulate the same steps what we did to get the **bb.morgan** except that we have to remove Protected Objects from the Support - that's the change we have to do:
+Now we can get access to the user **EE.REED** to execute this attack. We can simulate the same steps that we did to get **bb.morgan**, except that we have to remove Protected Objects from the Support group - that's the change we need to make:
 
 ```bash
 bloodyAD --host dc.rustykey.htb -k -d rustykey.htb -u 'IT-COMPUTER3$' -p 'Rusty88!' remove groupMember 'Protected Objects' 'SUPPORT'
@@ -666,7 +666,7 @@ bloodyAD --host dc.rustykey.htb -k -d rustykey.htb -u 'IT-COMPUTER3$' -p 'Rusty8
 [-] SUPPORT removed from Protected Objects
 ```
 
-And change the password for the ee.reed:
+And change ee.reed's password:
 
 ```bash
 bloodyAD --host dc.rustykey.htb -d rustykey.htb -k -u 'IT-COMPUTER3$' -p 'Rusty88!' set password "EE.REED" 'Pwnedcake@2025'
@@ -680,7 +680,7 @@ SMB         dc.rustykey.htb 445    dc               [*]  x64 (name:dc) (domain:r
 SMB         dc.rustykey.htb 445    dc               [-] rustykey.htb\ee.reed:Pwnedcake@2025 STATUS_LOGON_TYPE_NOT_GRANTED 
 ```
 
-It has some major restrictions that blocking our login what we can do is use bb.morgan shell to get a shell using **RunasCs** common technique :)
+There are some major restrictions blocking our login. What we can do is use bb.morgan's shell to get a shell as ee.reed using the **RunasCs** technique :)
 
 Upload RunasCs using evil-winrm:
 
@@ -730,7 +730,7 @@ rustykey\ee.reed
 PS C:\Windows\system32> 
 ```
 
-Since now we have ee.reed we can use this privileges to overwrite the registry with a malicious DLL:
+Since we now have access as ee.reed, we can use these privileges to overwrite the registry with a malicious DLL:
 
 ```text
 HKLM\Software\Classes\CLSID\{23170F69-40C1-278A-1000-000100020000}\InprocServer32
@@ -800,7 +800,7 @@ UserPrincipalName                    :
 PS C:\Windows>
 ```
 
-The current `PrincipalsAllowedToDelegateToAccount` is empty so none of the users can't impersonate. Let's add IT-COMPUTER3$ to this list and get a service ticket using that:
+The current `PrincipalsAllowedToDelegateToAccount` is empty, so none of the users can impersonate others. Let's add IT-COMPUTER3$ to this list and get a service ticket:
 
 ```powershell
 PS C:\Windows> Set-ADComputer -Identity DC -PrincipalsAllowedToDelegateToAccount "IT-COMPUTER3$"
@@ -820,9 +820,9 @@ UserPrincipalName                    :
 PS C:\Windows>
 ```
 
-Nice now the IT-COMPUTER3$ is in place we can do the ST attack.
+Nice! Now IT-COMPUTER3$ is in place and we can execute the S4U attack.
 
-There is that **backupadmin** user we can get that user and dump the hashes using its ticket:
+We can use the **backupadmin** user to dump the hashes using its ticket:
 
 ```bash
 getST.py -spn 'cifs/dc.rustykey.htb' -impersonate 'backupadmin' 'RUSTYKEY.HTB/IT-COMPUTER3$:Rusty88!'  
@@ -906,7 +906,7 @@ rustykey\administrator
 *Evil-WinRM* PS C:\Users\Administrator\Documents>
 ```
 
-**Rooted!** Relatively easy user but the root part is kind of tough. Happy Hacking Everyone <3
+**Rooted!** The user part was relatively straightforward, but the root escalation was quite challenging. Happy Hacking Everyone <3
 
 ---
 
