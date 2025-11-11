@@ -32,9 +32,11 @@ When I'm not researching the latest attack vectors or developing proof-of-concep
 - **eJPT** - eLearnSecurity Junior Penetration Tester
 - **PT1** - Junior Penetration Tester
 - **CRTA** - Certified Red Team Analyst
-- **IIT Cybersecurity**
-- **IIT Network System Administrator**
-- **HackTheBox Dante Pro Lab Certificate**
+- **AD-RTS (CyberwarfareLabs) Certified AD Ream Team Specialist**
+- **Professional Certificate in Cyber Security- IIT**
+- **Network Administrator- Professional Certificate in Network and System Administration- IIT**
+- **Android Bug Bounty Hunting, EC-Council**
+- **Certified Red Team Professional - READING**
 
 ---
 
@@ -49,9 +51,9 @@ When I'm not researching the latest attack vectors or developing proof-of-concep
 ### Cyber Security Consultant (Freelance)
 **Legion Offensive Security** | *Oct 2024 – Present*
 
-- Organized and planned a cybersecurity webinar series in collaboration with the **Digital Trust Alliance** and **ISACA Sri Lanka Chapter**, contributing to knowledge sharing across the security community
-- Assisted in research and development of content for cybersecurity awareness initiatives, helping engage a broader audience
-- Spearheaded a major CTF event, designing challenging tasks across web exploitation, reverse engineering, cryptography, and various other security domains
+- Conducted penetration testing and vulnerability assessments across web applications, networks, and Active Directory environments, identifying critical security flaws and misconfigurations.
+- Designed and executed Capture The Flag (CTF) challenges covering web exploitation, privilege escalation, reverse engineering, and cryptography to simulate real-world attack scenarios.
+- Researched and developed new offensive security techniques and tools to enhance testing methodologies and improve client assessment workflows.
 
 ### CTF Player
 **HackTheBox / TryHackMe / Other** | *Oct 2021 – Present*

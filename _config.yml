@@ -19,11 +19,11 @@ title: S.A.W. DEWMINA # the main title
 tagline: Offensive Security Researcher, Red Teamer, Penetration Tester # it will display as the subtitle
 
 description: >- # used by seo meta and the atom feed
-  Wathsala Dewmina, an Offensive Security Researcher, Red Teamer, and Penetration Tester passionate about cybersecurity and ethical hacking.
+  Wathsala Dewmina (pwnedcake) - Offensive Security Researcher, Red Teamer, and Penetration Tester specializing in Active Directory exploitation, web application security, and CTF challenges. CPTS, CRTA, EJPT certified. Top 3 CTF player in Sri Lanka on HackTheBox and TryHackMe.
 
 # Fill in the protocol & hostname for your site.
 # E.g. 'https://username.github.io', note that it does not end with a '/'.
-url: ""
+url: "https://pwnedcake.github.io" # the base hostname & protocol for your site
 
 github:
   username: pwnedcake # change to your GitHub username
@@ -40,13 +40,13 @@ social:
     # The first element serves as the copyright owner's link
     - https://twitter.com/pwnedcake # change to your Twitter homepage
     - https://github.com/pwnedcake # change to your GitHub homepage
-    # Uncomment below to add more social links
+    - https://www.linkedin.com/in/wathsaladewm1na
     # - https://www.facebook.com/username
-    # - https://www.linkedin.com/in/username
+    # - https://www.linkedin.com/in/wathsaladewm1na
 
 # Site Verification Settings
 webmaster_verifications:
-  google: # fill in your Google verification code
+  google: eVIGkaeb1UMippDgsB4Iox9BKJJxuLWTNg1TsAn4dq8
   bing: # fill in your Bing verification code
   alexa: # fill in your Alexa verification code
   yandex: # fill in your Yandex verification code
@@ -102,7 +102,7 @@ avatar: /assets/img/profile.jpg
 
 # The URL of the site-wide social preview image used in SEO `og:image` meta tag.
 # It can be overridden by a customized `page.image` in front matter.
-social_preview_image: # string, local or CORS resources
+social_preview_image: /assets/img/favicons/favicon.svg
 
 # boolean type, the global switch for TOC in posts.
 toc: true
