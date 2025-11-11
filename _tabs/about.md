@@ -36,7 +36,7 @@ When I'm not researching the latest attack vectors or developing proof-of-concep
 - **Professional Certificate in Cyber Security- IIT**
 - **Network Administrator- Professional Certificate in Network and System Administration- IIT**
 - **Android Bug Bounty Hunting, EC-Council**
-- **Certified Red Team Professional - READING**
+- **Certified Red Team Professional (CRTP) - READING**
 
 ---
 
