@@ -1,6 +1,6 @@
 ---
-title: Arsenal - PwnedCake's Offensive Security Tools & Commands
-description: Wathsala Dewmina's (PwnedCake) arsenal of penetration testing commands, payloads, and tools for CTFs, red teaming, and offensive security operations. Nmap, Impacket, Active Directory, and more.
+title: Arsenal - PwnedCake
+description: Arsenal of penetration testing commands, payloads, and tools for CTFs, red teaming, and offensive security operations. Nmap, Impacket, Active Directory, and more.
 keywords: Wathsala Dewmina, PwnedCake, Arsenal, Penetration Testing Tools, Offensive Security Commands, CTF Payloads, Impacket, Active Directory, Red Teaming, Nmap
 author: Wathsala Dewmina
 icon: fas fa-tools
