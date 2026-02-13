@@ -16,10 +16,19 @@ timezone:
 
 title: PwnedCake # the main title
 
-tagline: Offensive Security Researcher, Red Teamer, Penetration Tester # it will display as the subtitle
+tagline: Offensive Security Researcher | Red Teamer | Penetration Tester # it will display as the subtitle
 
 description: >- # used by seo meta and the atom feed
-  Wathsala Dewmina (pwnedcake) - Offensive Security Researcher, Red Teamer, and Penetration Tester specializing in Active Directory exploitation, web application security, and CTF challenges. CPTS, CRTA, EJPT certified. Top 3 CTF player in Sri Lanka on HackTheBox and TryHackMe.
+  Wathsala Dewmina (PwnedCake) - Offensive Security Researcher, Red Teamer, and Penetration Tester specializing in Active Directory exploitation, web application security, and CTF challenges. CPTS, CRTA, EJPT certified. Top 3 CTF player in Sri Lanka on HackTheBox and TryHackMe.
+
+# SEO Keywords
+keywords: Wathsala Dewmina, PwnedCake, Offensive Security, Red Teamer, Penetration Tester, Active Directory, HackTheBox, TryHackMe, CPTS, CRTA, EJPT, Cyber Security, CTF, Ethical Hacker, Security Researcher, Sri Lanka
+
+# Author information
+author:
+  name: Wathsala Dewmina
+  twitter: pwnedcake
+  picture: /assets/img/profile.jpg
 
 # Fill in the protocol & hostname for your site.
 # E.g. 'https://username.github.io', note that it does not end with a '/'.
@@ -34,7 +43,7 @@ twitter:
 social:
   # Change to your full name.
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
-  name: pwnedcake
+  name: Wathsala Dewmina
   email: wathsaladewmina153@gmail.com # change to your email address
   links:
     # The first element serves as the copyright owner's link
@@ -151,6 +160,11 @@ paginate: 10
 
 # The base URL of your site
 baseurl: ""
+
+# Plugins
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
 
 # ------------ The following options are not recommended to be modified ------------------
 

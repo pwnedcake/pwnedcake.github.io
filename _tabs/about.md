@@ -2,6 +2,10 @@
 # the default layout is 'page'
 icon: fas fa-info-circle
 order: 4
+title: About Wathsala Dewmina (PwnedCake) - Offensive Security Researcher
+description: Learn about Wathsala Dewmina (PwnedCake), an Offensive Security Researcher, Red Teamer, and Penetration Tester from Sri Lanka. Top 3 CTF player specializing in Active Directory security, ethical hacking, and cyber security.
+keywords: Wathsala Dewmina, PwnedCake, About, Biography, Offensive Security, Red Teamer, Penetration Tester, Sri Lanka, HackTheBox, TryHackMe
+author: Wathsala Dewmina
 ---
 
 ## Introduction
