@@ -48,8 +48,15 @@ When I'm not researching the latest attack vectors or developing proof-of-concep
 
 ## Experience
 
+### Associate Information Security Engineer
+**TechCERT** | *Jan 2026 – Present*
+
+* Performed **red team–focused offensive security engagements**, including VAPT and penetration testing across web applications, networks, and Active Directory environments.
+* Executed **manual exploitation and post-exploitation activities** such as privilege escalation, lateral movement, and attack path validation.
+* Delivered **impact-driven findings and remediation guidance**, helping improve organizational security posture against real-world threats.
+
 ### Cyber Security Consultant (Freelance)
-**Legion Offensive Security** | *Oct 2024 – Present*
+**Legion Offensive Security** | *Oct 2024 – Jan 2026*
 
 - Conducted penetration testing and vulnerability assessments across web applications, networks, and Active Directory environments, identifying critical security flaws and misconfigurations.
 - Designed and executed Capture The Flag (CTF) challenges covering web exploitation, privilege escalation, reverse engineering, and cryptography to simulate real-world attack scenarios.
