@@ -1,4 +1,30 @@
+# Robots.txt for pwnedcake.github.io
+# Wathsala Dewmina (PwnedCake) - Offensive Security Researcher
+
+# Allow all crawlers
 User-agent: *
 Allow: /
 
+# Disallow admin and system paths
+Disallow: /assets/js/dist/
+Disallow: /.git/
+Disallow: /node_modules/
+
+# Googlebot specific rules
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+# Bingbot specific rules
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Sitemap location - CRITICAL for SEO
 Sitemap: https://pwnedcake.github.io/sitemap.xml
+
+# RSS Feed
+Sitemap: https://pwnedcake.github.io/feed.xml
+
+# Host directive
+Host: https://pwnedcake.github.io

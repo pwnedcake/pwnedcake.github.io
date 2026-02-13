@@ -1,90 +1,280 @@
-<!-- Structured Data for SEO - Wathsala Dewmina (PwnedCake) -->
+<!-- ============================================= -->
+<!-- COMPREHENSIVE SEO STRUCTURED DATA           -->
+<!-- Wathsala Dewmina (PwnedCake)                -->
+<!-- Offensive Security Researcher & Red Teamer  -->
+<!-- ============================================= -->
+
+<!-- Person Schema - Primary Identity -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Person",
+  "@id": "https://pwnedcake.github.io/#person",
   "name": "Wathsala Dewmina",
-  "alternateName": "PwnedCake",
+  "givenName": "Wathsala",
+  "familyName": "Dewmina",
+  "alternateName": ["PwnedCake", "pwnedcake", "Wathsala", "Dewmina"],
   "url": "https://pwnedcake.github.io",
-  "image": "https://pwnedcake.github.io/assets/img/profile.jpg",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://pwnedcake.github.io/assets/img/profile.jpg",
+    "width": 400,
+    "height": 400
+  },
   "sameAs": [
     "https://github.com/pwnedcake",
     "https://twitter.com/pwnedcake",
+    "https://x.com/pwnedcake",
     "https://www.linkedin.com/in/wathsaladewm1na",
-    "https://app.hackthebox.com/profile/pwnedcake",
+    "https://app.hackthebox.com/users/pwnedcake",
     "https://tryhackme.com/p/pwnedcake"
   ],
-  "jobTitle": "Offensive Security Researcher",
-  "description": "Wathsala Dewmina (PwnedCake) - Offensive Security Researcher, Red Teamer, and Penetration Tester specializing in Active Directory exploitation, web application security, and CTF challenges. CPTS, CRTA, EJPT certified. Top 3 CTF player in Sri Lanka.",
+  "jobTitle": ["Offensive Security Researcher", "Red Teamer", "Penetration Tester", "Security Engineer"],
+  "worksFor": {
+    "@type": "Organization",
+    "name": "TechCERT"
+  },
+  "description": "Wathsala Dewmina, known as PwnedCake, is an Offensive Security Researcher, Red Teamer, and Penetration Tester from Sri Lanka. Top 3 CTF player specializing in Active Directory exploitation, web application security, and ethical hacking. CPTS, CRTA, EJPT certified.",
   "knowsAbout": [
     "Offensive Security",
     "Penetration Testing",
     "Red Teaming",
     "Active Directory Security",
+    "Active Directory Exploitation",
     "Ethical Hacking",
     "Cyber Security",
     "CTF Challenges",
+    "Capture The Flag",
     "Malware Development",
     "Web Application Security",
-    "Network Security"
+    "Network Security",
+    "Privilege Escalation",
+    "Lateral Movement",
+    "SSTI Exploitation",
+    "SQL Injection",
+    "Windows Security",
+    "Linux Security",
+    "HackTheBox",
+    "TryHackMe"
   ],
   "hasCredential": [
     {
       "@type": "EducationalOccupationalCredential",
-      "name": "CPTS - Certified Penetration Testing Specialist"
+      "name": "CPTS",
+      "description": "Certified Penetration Testing Specialist",
+      "credentialCategory": "Professional Certification"
     },
     {
       "@type": "EducationalOccupationalCredential",
-      "name": "CRTA - Certified Red Team Analyst"
+      "name": "CRTA",
+      "description": "Certified Red Team Analyst",
+      "credentialCategory": "Professional Certification"
     },
     {
       "@type": "EducationalOccupationalCredential",
-      "name": "eJPT - eLearnSecurity Junior Penetration Tester"
+      "name": "eJPT",
+      "description": "eLearnSecurity Junior Penetration Tester",
+      "credentialCategory": "Professional Certification"
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "name": "AD-RTS",
+      "description": "Active Directory Red Team Specialist - CyberwarfareLabs",
+      "credentialCategory": "Professional Certification"
     }
   ],
   "nationality": {
     "@type": "Country",
     "name": "Sri Lanka"
+  },
+  "alumniOf": {
+    "@type": "EducationalOrganization",
+    "name": "Informatics Institute of Technology (IIT)"
   }
 }
 </script>
 
+<!-- WebSite Schema with SearchAction -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebSite",
+  "@id": "https://pwnedcake.github.io/#website",
   "name": "Wathsala Dewmina | PwnedCake",
-  "alternateName": "PwnedCake Portfolio",
+  "alternateName": ["PwnedCake Blog", "PwnedCake Security Blog", "Wathsala Dewmina Blog"],
   "url": "https://pwnedcake.github.io",
-  "description": "Personal portfolio and blog of Wathsala Dewmina (PwnedCake) - Offensive Security Researcher, Red Teamer, and Penetration Tester. CTF writeups, security research, and penetration testing insights.",
+  "description": "Personal portfolio and security blog of Wathsala Dewmina (PwnedCake) - Offensive Security Researcher, Red Teamer, and Penetration Tester. Featuring HackTheBox writeups, CTF solutions, penetration testing tutorials, and offensive security research.",
+  "inLanguage": "en-US",
+  "publisher": {
+    "@id": "https://pwnedcake.github.io/#person"
+  },
   "author": {
-    "@type": "Person",
-    "name": "Wathsala Dewmina",
-    "alternateName": "PwnedCake"
+    "@id": "https://pwnedcake.github.io/#person"
   },
   "potentialAction": {
     "@type": "SearchAction",
-    "target": "https://pwnedcake.github.io/search?q={search_term_string}",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://pwnedcake.github.io/?q={search_term_string}"
+    },
     "query-input": "required name=search_term_string"
   }
 }
 </script>
 
+<!-- Blog Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "@id": "https://pwnedcake.github.io/#blog",
+  "name": "PwnedCake Security Blog",
+  "description": "HackTheBox writeups, CTF solutions, penetration testing tutorials, and offensive security research by Wathsala Dewmina (PwnedCake)",
+  "url": "https://pwnedcake.github.io",
+  "author": {
+    "@id": "https://pwnedcake.github.io/#person"
+  },
+  "publisher": {
+    "@id": "https://pwnedcake.github.io/#person"
+  },
+  "blogPost": [
+    {
+      "@type": "BlogPosting",
+      "headline": "HackTheBox Writeups",
+      "description": "Detailed walkthroughs of HackTheBox machines including Easy, Medium, Hard, and Insane difficulty levels"
+    }
+  ],
+  "about": [
+    "Cyber Security",
+    "Penetration Testing",
+    "HackTheBox Writeups",
+    "CTF Challenges",
+    "Offensive Security"
+  ]
+}
+</script>
+
+<!-- ProfilePage Schema -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "ProfilePage",
   "mainEntity": {
-    "@type": "Person",
-    "name": "Wathsala Dewmina",
-    "alternateName": "PwnedCake",
-    "description": "Offensive Security Researcher and Red Teamer from Sri Lanka",
-    "image": "https://pwnedcake.github.io/assets/img/profile.jpg",
-    "sameAs": [
-      "https://github.com/pwnedcake",
-      "https://twitter.com/pwnedcake",
-      "https://www.linkedin.com/in/wathsaladewm1na"
-    ]
-  }
+    "@id": "https://pwnedcake.github.io/#person"
+  },
+  "dateCreated": "2024-01-01",
+  "dateModified": "{{ site.time | date_to_xmlschema }}"
 }
 </script>
+
+<!-- Organization Schema for Professional Context -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "PwnedCake Security Research",
+  "description": "Offensive security research, penetration testing, and red team services by Wathsala Dewmina",
+  "url": "https://pwnedcake.github.io",
+  "founder": {
+    "@id": "https://pwnedcake.github.io/#person"
+  },
+  "areaServed": "Worldwide",
+  "serviceType": [
+    "Penetration Testing",
+    "Red Team Operations",
+    "Security Research",
+    "Vulnerability Assessment"
+  ]
+}
+</script>
+
+<!-- BreadcrumbList for Navigation -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://pwnedcake.github.io"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "About Wathsala Dewmina",
+      "item": "https://pwnedcake.github.io/about/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Security Blog",
+      "item": "https://pwnedcake.github.io/archives/"
+    }
+  ]
+}
+</script>
+
+<!-- FAQPage Schema for Common Questions -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Who is Wathsala Dewmina?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Wathsala Dewmina, also known as PwnedCake, is an Offensive Security Researcher, Red Teamer, and Penetration Tester from Sri Lanka. He is a Top 3 CTF player in Sri Lanka on HackTheBox and TryHackMe, and holds certifications including CPTS, CRTA, and EJPT."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Who is PwnedCake?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "PwnedCake is the online alias of Wathsala Dewmina, an Offensive Security Researcher specializing in Active Directory exploitation, web application security, and CTF challenges. He shares HackTheBox writeups and security research on his blog."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What certifications does PwnedCake have?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "PwnedCake (Wathsala Dewmina) holds multiple security certifications including CPTS (Certified Penetration Testing Specialist), CRTA (Certified Red Team Analyst), eJPT (eLearnSecurity Junior Penetration Tester), and AD-RTS (Active Directory Red Team Specialist)."
+      }
+    }
+  ]
+}
+</script>
+
+<!-- Additional Meta Tags for Enhanced SEO -->
+<meta name="author" content="Wathsala Dewmina">
+<meta name="creator" content="PwnedCake">
+<meta name="publisher" content="Wathsala Dewmina">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="googlebot" content="index, follow">
+<meta name="bingbot" content="index, follow">
+<meta name="revisit-after" content="3 days">
+<meta name="rating" content="general">
+<meta name="referrer" content="no-referrer-when-downgrade">
+
+<!-- Geo Tags for Sri Lanka -->
+<meta name="geo.region" content="LK">
+<meta name="geo.country" content="Sri Lanka">
+<meta name="ICBM" content="7.8731, 80.7718">
+
+<!-- Dublin Core Metadata -->
+<meta name="DC.title" content="Wathsala Dewmina | PwnedCake - Offensive Security Researcher">
+<meta name="DC.creator" content="Wathsala Dewmina">
+<meta name="DC.subject" content="Cyber Security, Penetration Testing, Red Teaming, CTF">
+<meta name="DC.description" content="Security blog featuring HackTheBox writeups and offensive security research by Wathsala Dewmina (PwnedCake)">
+<meta name="DC.publisher" content="Wathsala Dewmina">
+<meta name="DC.type" content="Blog">
+<meta name="DC.format" content="text/html">
+<meta name="DC.language" content="en">
+
+<!-- Link to sitemap explicitly -->
+<link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">

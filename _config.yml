@@ -14,19 +14,43 @@ timezone:
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
-title: PwnedCake # the main title
+title: Wathsala Dewmina | PwnedCake # the main title - include real name for SEO
 
-tagline: Offensive Security Researcher | Red Teamer | Penetration Tester # it will display as the subtitle
+tagline: Offensive Security Researcher | Red Teamer | Penetration Tester | CTF Player # it will display as the subtitle
 
 description: >- # used by seo meta and the atom feed
-  Wathsala Dewmina (PwnedCake) - Offensive Security Researcher, Red Teamer, and Penetration Tester specializing in Active Directory exploitation, web application security, and CTF challenges. CPTS, CRTA, EJPT certified. Top 3 CTF player in Sri Lanka on HackTheBox and TryHackMe.
+  Wathsala Dewmina (PwnedCake) - Offensive Security Researcher, Red Teamer, and Penetration Tester from Sri Lanka.
+  Specializing in Active Directory exploitation, web application security, and CTF challenges.
+  CPTS, CRTA, EJPT certified. Top 3 CTF player in Sri Lanka on HackTheBox and TryHackMe.
+  Security blog featuring HackTheBox writeups, penetration testing tutorials, and offensive security research.
 
-# SEO Keywords
-keywords: Wathsala Dewmina, PwnedCake, Offensive Security, Red Teamer, Penetration Tester, Active Directory, HackTheBox, TryHackMe, CPTS, CRTA, EJPT, Cyber Security, CTF, Ethical Hacker, Security Researcher, Sri Lanka
+# SEO Keywords - Comprehensive list for search engines
+keywords:
+  - Wathsala Dewmina
+  - PwnedCake
+  - Offensive Security Researcher
+  - Red Teamer
+  - Penetration Tester
+  - Active Directory Security
+  - HackTheBox Writeups
+  - TryHackMe Writeups
+  - CTF Player Sri Lanka
+  - CPTS Certified
+  - CRTA Certified
+  - EJPT Certified
+  - Cyber Security Blog
+  - Ethical Hacker
+  - Security Researcher
+  - Web Application Security
+  - Privilege Escalation
+  - Network Penetration Testing
+  - Malware Development
+  - Red Team Operations
 
-# Author information
+# Author information - Enhanced for SEO
 author:
   name: Wathsala Dewmina
+  url: https://pwnedcake.github.io/about/
   twitter: pwnedcake
   picture: /assets/img/profile.jpg
 
@@ -47,11 +71,22 @@ social:
   email: wathsaladewmina153@gmail.com # change to your email address
   links:
     # The first element serves as the copyright owner's link
-    - https://twitter.com/pwnedcake # change to your Twitter homepage
-    - https://github.com/pwnedcake # change to your GitHub homepage
+    - https://twitter.com/pwnedcake
+    - https://github.com/pwnedcake
     - https://www.linkedin.com/in/wathsaladewm1na
-    # - https://www.facebook.com/username
-    # - https://www.linkedin.com/in/wathsaladewm1na
+    - https://app.hackthebox.com/users/pwnedcake
+    - https://tryhackme.com/p/pwnedcake
+
+# Open Graph / Facebook
+og:
+  type: website
+  locale: en_US
+
+# Twitter Card
+twitter:
+  card: summary_large_image
+  site: "@pwnedcake"
+  creator: "@pwnedcake"
 
 # Site Verification Settings
 webmaster_verifications:
@@ -161,10 +196,15 @@ paginate: 10
 # The base URL of your site
 baseurl: ""
 
-# Plugins
+# Plugins - SEO Optimized
 plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
+  - jekyll-feed
+
+# Feed settings
+feed:
+  posts_limit: 20
 
 # ------------ The following options are not recommended to be modified ------------------
 
